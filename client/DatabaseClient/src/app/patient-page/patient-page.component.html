@@ -1,0 +1,145 @@
+<body>
+<mat-toolbar color="primary">
+  <span>Pacjent {{this.currentPatient.name}} {{this.currentPatient.surname}}</span>
+  <span class="spacer"></span>
+  <button class="btn action-button" (click)="addVisit()" aria-label="Przycisk dodawania vizyty">
+    Dodaj wizytę
+  </button>
+  <button class="btn action-button" (click)="addContactMember()" aria-label="Przycisk dodawania osoby kontaktowej">
+    Dodaj osobę kontaktową
+  </button>
+  <span class="spacer"></span>
+
+  <button class="btn action-button" (click)="goBack()" aria-label="Przycisk powrotu">
+    Wróć
+  </button>
+  <button class="btn action-button" (click)="logOut()" aria-label="Przycisk wylogowania">
+    Wyloguj
+  </button>
+</mat-toolbar>
+<br>
+<br>
+<div class="special-div">
+  <div class="flex-item data">Imię: {{this.currentPatient.name}}</div>
+  <div class="flex-item data">Nazwisko: {{this.currentPatient.surname}}</div>
+  <div class="flex-item data">PESEL: {{this.currentPatient.idNumber}}</div>
+</div>
+
+<div class="special-div">
+  <table mat-table [dataSource]="showVisitData" matSort class="mat-elevation-z8 flex-item">
+    <ng-container matColumnDef="dateStart">
+      <th mat-header-cell *matHeaderCellDef>
+        Przybycie
+      </th>
+      <td mat-cell *matCellDef="let visit"> {{visit.dateStart}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dateEnd">
+      <th mat-header-cell *matHeaderCellDef>
+        Wypis
+      </th>
+      <td mat-cell *matCellDef="let visit"> {{visit.dateEnd}} </td>
+    </ng-container>
+    <ng-container matColumnDef="recognition">
+      <th mat-header-cell *matHeaderCellDef>
+        Rozpoznanie
+      </th>
+      <td mat-cell *matCellDef="let visit"> {{visit.recognition}} </td>
+    </ng-container>
+    <ng-container matColumnDef="diagnosis">
+      <th mat-header-cell *matHeaderCellDef>
+        Diagnoza
+      </th>
+      <td mat-cell *matCellDef="let visit"> {{visit.diagnosis}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Akcje</th>
+      <td mat-cell *matCellDef="let visit">
+        <button mat-button class="menu-button" [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editVisit(visit.id)">Edytuj</button>
+          <button mat-menu-item (click)="deleteVisit(visit.id)">Usuń</button>
+          <button mat-menu-item (click)="addTreatment(visit.id)">Dodaj badanie</button>
+          <button mat-menu-item (click)="treatmentsDatasource(visit.id)">Pokaż badania</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showVistColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: showVistColumns;"></tr>
+  </table>
+
+  <table mat-table [dataSource]="showContactMemberData" matSort class="mat-elevation-z8 flex-item">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>
+        Imię
+      </th>
+      <td mat-cell *matCellDef="let contactMember"> {{contactMember.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef>
+        Nazwisko
+      </th>
+      <td mat-cell *matCellDef="let contactMember"> {{contactMember.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef>
+        Numer kontaktowy
+      </th>
+      <td mat-cell *matCellDef="let contactMember"> {{contactMember.phoneNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Akcje</th>
+      <td mat-cell *matCellDef="let contactMember">
+        <button mat-button class="menu-button" [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editContactMember(contactMember.id)">Edytuj</button>
+          <button mat-menu-item (click)="deleteContactMember(contactMember.id)">Usuń</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showContactMembersColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: showContactMembersColumns;"></tr>
+  </table>
+</div>
+
+<div class="special-div" style="width: 50%" *ngIf="showTreatmentsTable; else noshow">
+  <table mat-table [dataSource]="showTreatmentsData" matSort class="mat-elevation-z8 flex-item">
+    <ng-container matColumnDef="treatmentDate">
+      <th mat-header-cell *matHeaderCellDef>
+        Data
+      </th>
+      <td mat-cell *matCellDef="let treatment"> {{treatment.date}} </td>
+    </ng-container>
+    <div *matNoDataRow>No data</div>
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>
+        Badanie
+      </th>
+      <td mat-cell *matCellDef="let treatment"> {{treatment.details}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Akcje</th>
+      <td mat-cell *matCellDef="let treatment">
+        <button mat-button class="menu-button" [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editTreatment(treatment)">Edytuj</button>
+          <button mat-menu-item (click)="deleteTreatment(treatment.id)">Usuń</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showTreatmentColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: showTreatmentColumns;"></tr>
+  </table>
+  <button class="btn action-button" (click)="hideTreatments()" aria-label="Przycisk wylogowania">
+    Zwiń
+  </button>
+</div>
+
+<ng-template #noshow></ng-template>
+
+</body>

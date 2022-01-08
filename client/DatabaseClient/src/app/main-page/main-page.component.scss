@@ -1,0 +1,60 @@
+
+.container {
+  position: static;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+table {
+  margin: 1%;
+  width: 98%;
+  background-color: paleturquoise;
+}
+
+th.mat-sort-header-sorted {
+  text-align: center !important;
+  vertical-align: middle !important;
+  justify-content: center !important;
+  color: black;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.action-button {
+  margin: 5px;
+  background-color: #006559;
+  color: white;
+  font-size: 20px;
+}
+
+.sidenav {
+  background-color: #009688;
+  color: white;
+
+  padding: 20px;
+}
+
+.slider-buttons {
+  background-color: #006559;
+  color: white;
+
+  margin: 5px;
+}
+
+.menu-button {
+  justify-content: flex-end;
+  alignment: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.filter {
+  left: 20px;
+}

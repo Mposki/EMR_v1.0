@@ -1,0 +1,31 @@
+<div style="text-align: center">
+<h1 mat-dialog-title>Podaj dane wizyty</h1>
+<div mat-dialog-content>
+  <p>Data przyjęcia</p>
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="picker" placeholder="Wybierz datę przyjęcia" (dateChange)="updateDateStart($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <p>Data wypisu</p>
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="picker2" placeholder="Wybierz datę wypisu" (dateChange)="updateDateEnd($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <p>Rozpoznanie</p>
+  <mat-form-field appearance="fill">
+  <mat-label>Rozpoznanie</mat-label>
+    <textarea matInput [(ngModel)]="data.recognition"></textarea>
+  </mat-form-field>
+  <p>Diagnoza</p>
+  <mat-form-field appearance="fill">
+  <mat-label>Diagnoza</mat-label>
+    <input matInput [(ngModel)]="data.diagnosis">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions style="justify-content: center">
+  <button mat-button (click)="onNoClick()">Przerwij</button>
+  <button mat-button (click)="onAddClick()" cdkFocusInitial [disabled]="isNonAddable()">OK</button>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<div style="text-align: center">
+<h1 mat-dialog-title>Podaj dane pacjenta</h1>
+<div mat-dialog-content>
+  <p>Imię</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Imię</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <p>Nazwisko</p>
+  <mat-form-field appearance="fill">
+  <mat-label>Nazwisko</mat-label>
+    <input matInput [(ngModel)]="data.surname">
+  </mat-form-field>
+  <p>PESEL</p>
+  <mat-form-field appearance="fill">
+  <mat-label>PESEL</mat-label>
+    <input matInput [(ngModel)]="data.idNum" maxlength="11">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions style="justify-content: center">
+  <button mat-button (click)="onNoClick()">Przerwij</button>
+  <button mat-button (click)="onAddClick()" cdkFocusInitial [disabled]="isNonAddable()">Dodaj</button>
+</div>
+</div>

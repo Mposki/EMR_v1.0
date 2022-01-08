@@ -1,0 +1,70 @@
+<body>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Wybierz opcję</p>
+    <div>
+      <button class="slider-buttons" (click)="changeViewDatabase()" mat-raised-button>Baza danych</button>
+    </div>
+    <div>
+      <button class="slider-buttons" (click)="deleteDoctor()" mat-raised-button>Usuń konto</button>
+    </div>
+  </mat-drawer>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()" aria-label="Przycisk menu bocznego">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{this.titleText}}</span>
+    <span class="spacer"></span>
+    <button class="btn action-button" *ngIf="!isShared" (click)="addPatient()" aria-label="Przycisk dodawania pacjenta">
+      Dodaj
+    </button>
+
+    <button class="btn action-button" (click)="logOut()" aria-label="Przycisk wylogowania">
+      Wyloguj
+    </button>
+  </mat-toolbar>
+  <mat-form-field appearance="standard" class="filter">
+    <mat-label>Filtruj</mat-label>
+    <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Imię/ nazwisko/ PESEL" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="showData" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Imię
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nazwisko
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idNum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        PESEL
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.idNum}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Akcje</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button class="menu-button" [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editPatient(element.idNum)">Edytuj</button>
+          <button mat-menu-item (click)="deletePatient(element.idNum)">Usuń</button>
+          <button mat-menu-item (click)="showPatient(element.idNum)">Pokaż</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: showColumns;"></tr>
+  </table>
+</mat-drawer-container>
+
+
+</body>

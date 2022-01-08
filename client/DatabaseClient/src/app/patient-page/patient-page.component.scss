@@ -1,0 +1,58 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.action-button {
+  margin: 5px;
+  background-color: #006559;
+  color: white;
+  font-size: 20px;
+}
+
+.special-div {
+  max-width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: center;
+  margin: 0 auto;
+}
+
+.flex-item {
+  flex: 1; /*grow*/
+  border-left: 2px #767676;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+th.mat-header-cell {
+  text-align: center !important;
+  vertical-align: middle !important;
+  justify-content: center !important;
+  color: black;
+}
+
+th.mat-sort-header-sorted {
+  text-align: center !important;
+  vertical-align: middle !important;
+  justify-content: center !important;
+  color: black;
+}
+
+.data {
+  color: white;
+  font-size: 24px;
+}
+
+table {
+  background-color: paleturquoise;
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
+}

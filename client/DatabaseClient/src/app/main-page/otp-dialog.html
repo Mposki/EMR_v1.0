@@ -1,0 +1,14 @@
+<div style="text-align: center">
+<h1 mat-dialog-title>Weryfikacja użytkownika</h1>
+<div mat-dialog-content>
+  <p>Wpisz kod otrzymany na zarejestrowany adres e-mail</p>
+  <mat-form-field appearance="fill">
+    <mat-label>One Time Password</mat-label>
+    <input matInput [(ngModel)]="data.otpCode" maxlength="8">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions style="justify-content: center">
+  <button mat-button (click)="onNoClick()">Przerwij</button>
+  <button mat-button (click)="onSendClick()" cdkFocusInitial [disabled]="isNonSendable()">Ok</button>
+</div>
+</div>
