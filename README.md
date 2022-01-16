@@ -19,7 +19,7 @@ Przechodząc pod link https://portal-zarzadzajacy-pacjentami.herokuapp.com/ mamy
 Dane testowe:
 - mail:
     login- test_user_pzp@outlook.com
-    hasło- 6eRz;g"9;
+    hasło- 6eRz;g"9
 - użytkownik
     login- test_user
     hasło- 6eRz;g"9
