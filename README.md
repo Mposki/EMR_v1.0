@@ -1,4 +1,4 @@
-# Praca Inżynierska
+# EMR system for medicine students
 
 ## Client
 
@@ -11,21 +11,3 @@ Serwer napisany w technologii Spring Boot.
 Zawiera funkcjonalności:
 - autoryzacja i wysyłka maili autoryzacyjnych
 - komunikacja z bazą danych (MySQL oraz PostgreSQL)
-
-## Tesowanie
-
-Przechodząc pod link https://portal-zarzadzajacy-pacjentami.herokuapp.com/ mamy możliwość przetestowania aplikacji.
-
-Dane testowe:
-- mail:
-    login- test_user_pzp@outlook.com
-    login- test_user2_pzp@outlook.com
-    hasło- 6eRz;g"9
-- użytkownik
-    login- test_user
-    login- test_user2
-    hasło- 6eRz;g"9
-
-Logowanie, rejestracja, usuwanie konta oraz pacjentów wymaga podania kodu weryfikacyjnego na zarejestrowany adres email.
-
-Portal w trakcie testów niefunkcjonalnych wykazał odporność na podawanie błędnych danych.
